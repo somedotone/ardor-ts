@@ -6,7 +6,7 @@ An [Ardor](https://ardorplatform.org) client library written in typescript.
 ## Install
 
 ````
-npm install git+https://github.com/somedotone/ardor-ts
+npm install git+https://github.com/somedotone/ardor-ts#v1.0.0
 ````
 
 There is a postinstall script which transpiles the typescript files into javascript so that the library can also be used in javascript projects.
