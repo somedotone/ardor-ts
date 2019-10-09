@@ -34,12 +34,11 @@ if(config.test.accountModule.runTests) {
                 const token = Account.generateToken('test', config.account.alice.secret, true);
                 const response = await Request.decodeToken(config.node.url.testnet, { data: 'test', token: token});
 
-                const typedResponse = response as DecodeTokenResponse;
-                expect(typedResponse.valid).toBe(true);
-                expect(typedResponse.accountRS).toBe(config.account.alice.address);
+                expect(response.valid).toBe(true);
+                expect(response.accountRS).toBe(config.account.alice.address);
 
                 /* check if token was created currently (+/- 10 sec) */
-                const tokenCreationTime = Time.convertArdorToUnixTimestamp(typedResponse.timestamp, true);
+                const tokenCreationTime = Time.convertArdorToUnixTimestamp(response.timestamp, true);
                 expect(tokenCreationTime + timeWindow).toBeGreaterThan(currentTime);
                 expect(tokenCreationTime - timeWindow).toBeLessThan(currentTime);
             });
@@ -52,12 +51,11 @@ if(config.test.accountModule.runTests) {
                 const token = Account.generateToken('test', config.account.alice.secret);
                 const response = await Request.decodeToken(config.node.url.mainnet, { data: 'test', token: token});
 
-                const typedResponse = response as DecodeTokenResponse;
-                expect(typedResponse.valid).toBe(true);
-                expect(typedResponse.accountRS).toBe(config.account.alice.address);
+                expect(response.valid).toBe(true);
+                expect(response.accountRS).toBe(config.account.alice.address);
 
                 /* check if token was created currently (+/- 10 sec) */
-                const tokenCreationTime = Time.convertArdorToUnixTimestamp(typedResponse.timestamp);
+                const tokenCreationTime = Time.convertArdorToUnixTimestamp(response.timestamp);
                 expect(tokenCreationTime + timeWindow).toBeGreaterThan(currentTime);
                 expect(tokenCreationTime - timeWindow).toBeLessThan(currentTime);
             });
