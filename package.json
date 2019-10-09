@@ -1,0 +1,32 @@
+{
+  "name": "ardor-ts",
+  "version": "1.0.0",
+  "description": "An Ardor client library written in typescript",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npm run test-browser",
+    "test-node": "jest --testEnvironment=node",
+    "test-browser": "jest --testEnvironment=jsdom",
+    "build": "rm -rf dist && tsc",
+    "postinstall": "npm install typescript && tsc && rm -rf node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/somedotone/ardor-ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "@types/qs": "^6.5.3",
+    "ardorjs": "git+https://github.com/Atzen2/ardorjs#v1.0.0",
+    "axios": "^0.19.0",
+    "bip39": "^3.0.2",
+    "qs": "^6.9.0"
+  }
+}
