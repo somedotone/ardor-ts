@@ -37,12 +37,12 @@ export default class RequestHandler implements IRequest {
         return this.infoRequest("getBalance", url, params);
     }
 
-    private infoRequest = async(requestType: string, url: string, params: {[name: string]: any}): Promise<any> => {
+    private infoRequest = async (requestType: string, url: string, params: objectAny): Promise<any> => {
         params.requestType = requestType;
         return this.getRequest(url, params).then(response => this.setPromiseReturn(response.data));
     }
 
-    private getRequest = async (url: string, params: object): Promise<AxiosResponse<any>> => {
+    private getRequest = async (url: string, params: objectAny): Promise<AxiosResponse<any>> => {
         return axios.get(this.checkUrlPrefix(url), { params });
     }
 
@@ -61,7 +61,7 @@ export default class RequestHandler implements IRequest {
         _params.website = params.data;
         delete _params.data;
 
-        return this.infoRequest("decodeToken", url, params);
+        return this.infoRequest("decodeToken", url, _params);
     }
 
 
@@ -84,12 +84,12 @@ export default class RequestHandler implements IRequest {
         return this.transactionRequest("sendMoney", url, params);
     }
 
-    private transactionRequest = async(requestType: string, url: string, params: {[name: string]: any}): Promise<any> => {
+    private transactionRequest = async (requestType: string, url: string, params: objectAny): Promise<any> => {
         params.requestType = requestType;
         return this.postTransactionRequest(url, params).then(response => this.setPromiseReturn(response.data));
     }
     
-    private postTransactionRequest = async (url: string, params: {[name: string]: any}): Promise<AxiosResponse<any>> => {
+    private postTransactionRequest = async (url: string, params: objectAny): Promise<AxiosResponse<any>> => {
         let query = { ...params };
 
         delete query.requestType;
@@ -113,7 +113,7 @@ export default class RequestHandler implements IRequest {
 
 
         const signedTransactionBytesHex = Account.signTransactionBytes(unsignedTransactionBytesHex, params.secretPhrase);
-        return this.broadcast(url += "?requestType=broadcastTransaction", {transactionBytes: signedTransactionBytesHex, transactionJSON: transactionJSON});
+        return this.broadcast(url + "?requestType=broadcastTransaction", {transactionBytes: signedTransactionBytesHex, transactionJSON: transactionJSON});
     }
 
     private convertErrorToAxiosResponse = (error: ErrorResponse): AxiosResponse => {
@@ -126,22 +126,22 @@ export default class RequestHandler implements IRequest {
         };
     }
 
-    private broadcast = async(url: string, params: BroadcastTransactionParams): Promise<AxiosResponse<any>> => {
+    private broadcast = async (url: string, params: BroadcastTransactionParams): Promise<AxiosResponse<any>> => {
         return axios.post(url, qs.stringify(params), this.config);
     }
 
 
     public broadcastTransaction = async (url: string, params: BroadcastTransactionParams): Promise<BroadcastTransactionResponse> => {
-        return this.broadcast(url += "?requestType=broadcastTransaction", params).then(response => this.setPromiseReturn(response.data));
+        return this.broadcast(url + "?requestType=broadcastTransaction", params).then(response => this.setPromiseReturn(response.data));
     }
 
 
-    public setAccountProperty = async(url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse> => {
+    public setAccountProperty = async (url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse> => {
         return this.transactionRequest("setAccountProperty", url, params);
     }
 
 
-    public deleteAccountProperty = async(url: string, params: DeleteAccountPropertyParams): Promise<DeleteAccountPropertyResponse> => {
+    public deleteAccountProperty = async (url: string, params: DeleteAccountPropertyParams): Promise<DeleteAccountPropertyResponse> => {
         return this.transactionRequest("deleteAccountProperty", url, params);
     }
 

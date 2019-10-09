@@ -1,5 +1,6 @@
 export type objectAny = {[name: string]: any};
 
+
 export enum ChainId {
     ARDOR = 1,
     IGNIS,
@@ -52,7 +53,7 @@ export interface GetBlockchainTransactionsParams {
     subType?: ChildTransactionSubtype | ParentTransactionSubtype;
     firstIndex?: number;
     lastIndex?: number;
-    numberOfConfirmations?:	number;
+    numberOfConfirmations?: number;
     withMessage?: boolean;
     phasedOnly?: boolean;
     nonPhasedOnly?: boolean;
@@ -165,7 +166,7 @@ export enum ChildTransactionSubtype {
 
 export interface GetBlockchainTransactionsResponse {
     requestProcessingTime: number;
-    transactions: [{[name: string]: any}];
+    transactions: [ objectAny ];
 }
 
 
@@ -200,15 +201,16 @@ export interface GetAccountPropertiesResponse {
     recipientRS?: string;
     recipient?: string;
     requestProcessingTime: number;
-    properties: [{
-        recipientRS?: string;
-        recipient?: string;
-        setterRS?: string;
-        setter?: string;
-        property: string;
-        value: string;
-    }];
-
+    properties: [
+        {
+            recipientRS?: string;
+            recipient?: string;
+            setterRS?: string;
+            setter?: string;
+            property: string;
+            value: string;
+        }
+    ];
 }
 
 
@@ -224,9 +226,9 @@ export interface SendMoneyResponse extends BroadcastTransactionResponse {}
 
 
 export interface BroadcastTransactionParams {
-    transactionJSON?: {[name: string]: any};
+    transactionJSON?: objectAny;
     transactionBytes?: string;
-    prunableAttachmentJSON?: {[name: string]: any};
+    prunableAttachmentJSON?: objectAny;
 }
 
 export interface BroadcastTransactionResponse {

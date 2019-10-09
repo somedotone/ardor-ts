@@ -21,4 +21,5 @@ export default class TimeConverter implements ITime{
         return isTestnetTimestamp ? timestamp + this.ardorBeginTimestamp.testnet
                                   : timestamp + this.ardorBeginTimestamp.mainnet;
     }
+    
 }
