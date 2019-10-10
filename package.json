@@ -8,7 +8,8 @@
     "test-node": "jest --testEnvironment=node",
     "test-browser": "jest --testEnvironment=jsdom",
     "build": "rm -rf dist && tsc",
-    "postinstall": "npm install typescript && tsc && rm -rf node_modules"
+    "postinstall": "npm install typescript && tsc && rm -rf node_modules",
+    "install-dev": "npm install --ignore-script && npm rebuild &> /dev/null"
   },
   "repository": {
     "type": "git",
