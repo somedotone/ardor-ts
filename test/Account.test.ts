@@ -1,5 +1,5 @@
-import config from './config'
-import { Account, Time, Request, DecodeTokenResponse } from "../src/index"
+import { Account, Request, Time } from "../src/index";
+import config from './config';
 
 
 if(config.test.accountModule.runTests) {
