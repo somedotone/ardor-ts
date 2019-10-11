@@ -26,6 +26,18 @@ if(config.test.accountModule.runTests) {
         });
 
 
+        test('convertPassphraseToAccountId', () => {
+            const accountId = Account.convertPassphraseToAccountId(config.account.alice.secret);
+            expect(accountId).toBe(config.account.alice.id);
+        });
+
+
+        test('convertPassphraseToAccountRs', () => {
+            const accountRs = Account.convertPassphraseToAccountRs(config.account.alice.secret);
+            expect(accountRs).toBe(config.account.alice.address);
+        });
+
+
         if(config.test.accountModule.generateToken) {
             test('generateToken testnet', async () => {
                 const timeWindow = 10 * 1000; // 10 sec

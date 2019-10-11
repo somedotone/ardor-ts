@@ -283,6 +283,8 @@ export interface IAccount {
     convertPassphraseToPublicKey: (passphrase: string, toByteArray?: boolean) => string | Array<number>;
     convertPublicKeyToAccountId: (publicKey: string) => string;
     convertPublicKeyToAccountRs: (publicKey: string) => string;
+    convertPassphraseToAccountId: (passphrase: string) => string;
+    convertPassphraseToAccountRs: (passphrase: string) => string;
     generateToken: (message: string, passphrase: string, forTestnet?: boolean) => string;
     signTransactionBytes: (unsignedTransactionBytesHex: string, passphrase: string) => string;
     verifyTransactionBytes: (unsignedTransactionBytesHex: string, transactionType: string, transactionJSON: object, publicKey: string) => boolean;

@@ -25,6 +25,16 @@ export default class AccountHandler implements IAccount {
     }
 
 
+    public convertPassphraseToAccountId = (passphrase: string): string => {
+        return this.convertPublicKeyToAccountId(this.convertPassphraseToPublicKey(passphrase) as string);
+    }
+
+
+    public convertPassphraseToAccountRs = (passphrase: string): string => {
+        return this.convertPublicKeyToAccountRs(this.convertPassphraseToPublicKey(passphrase) as string);
+    }
+
+
     public signTransactionBytes = (unsignedTransactionBytesHex: string, passphrase: string): string => {
         return ardorjs.signTransactionBytes(unsignedTransactionBytesHex, passphrase);
     }

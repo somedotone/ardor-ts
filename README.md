@@ -6,7 +6,13 @@ An [Ardor](https://ardorplatform.org) client library written in typescript.
 ## Install
 
 ````
-npm install git+https://github.com/somedotone/ardor-ts#v1.0.1
+npm install git+https://github.com/somedotone/ardor-ts
+````
+
+For release version use
+
+````
+npm install git+https://github.com/somedotone/ardor-ts#<release tag>
 ````
 
 There is a postinstall script which transpiles the typescript files into javascript so that the library can also be used in javascript projects.
@@ -122,7 +128,7 @@ The following requests are implemented:
 
 ### Account
 
-The Account module is a wrapper of a forked [version](https://github.com/Atzen2/ardorjs/projects) of the [ardorjs](https://github.com/mrv777/ardorjs) package. It handles transaction signing, account conversions and token generation.
+The Account module is a wrapper of a forked [version](https://github.com/Atzen2/ardorjs) of the [ardorjs](https://github.com/mrv777/ardorjs) package. It handles transaction signing, account conversions and token generation.
 
 It provides the following APIs:
 
@@ -130,6 +136,8 @@ It provides the following APIs:
 - convertPassphraseToPublicKey: (passphrase: string, toByteArray?: boolean) => string | Array<number> // toByteArray defaults to false
 - convertPublicKeyToAccountId: (publicKey: string) => string
 - convertPublicKeyToAccountRs: (publicKey: string) => string
+- convertPassphraseToAccountId: (passphrase: string) => string;
+- convertPassphraseToAccountRs: (passphrase: string) => string;
 - generateToken: (message: string, passphrase: string, forTestnet?: boolean) => string // forTestnet defaults to false
 - signTransactionBytes: (unsignedTransactionBytesHex: string, passphrase: string) => string
 - verifyTransactionBytes: (unsignedTransactionBytesHex: string, transactionType: string, transactionJSON: object, publicKey: string) => boolean
