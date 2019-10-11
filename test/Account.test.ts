@@ -38,6 +38,31 @@ if(config.test.accountModule.runTests) {
         });
 
 
+        test('checkAccountRs success', () => {
+            expect(Account.checkAccountRs(config.account.alice.address)).toBe(true);
+        });
+
+
+        test('checkAccountRs prefix error', () => {
+            expect(Account.checkAccountRs('ARD-XCTG-FVBM-9KNX-3DA6B')).toBe(false);
+        });
+
+
+        test('checkAccountRs alphabet error', () => {
+            expect(Account.checkAccountRs('ARDOR-XCTG-FVBM-9KNX-3DA6I')).toBe(false);
+        });
+
+
+        test('checkAccountRs length error', () => {
+            expect(Account.checkAccountRs('ARDOR-XCTG-FVBM-9KNX-3DA6BW')).toBe(false);
+        });
+
+
+        test('checkAccountRs structure error', () => {
+            expect(Account.checkAccountRs('ARDOR-XCTG-FVBM-9KNX3DA6B')).toBe(false);
+        });
+
+
         if(config.test.accountModule.generateToken) {
             test('generateToken testnet', async () => {
                 const timeWindow = 10 * 1000; // 10 sec

@@ -136,8 +136,9 @@ It provides the following APIs:
 - convertPassphraseToPublicKey: (passphrase: string, toByteArray?: boolean) => string | Array<number> // toByteArray defaults to false
 - convertPublicKeyToAccountId: (publicKey: string) => string
 - convertPublicKeyToAccountRs: (publicKey: string) => string
-- convertPassphraseToAccountId: (passphrase: string) => string;
-- convertPassphraseToAccountRs: (passphrase: string) => string;
+- convertPassphraseToAccountId: (passphrase: string) => string
+- convertPassphraseToAccountRs: (passphrase: string) => string
+- checkAccountRs: (accountRs: string) => boolean // ok => true, error => false
 - generateToken: (message: string, passphrase: string, forTestnet?: boolean) => string // forTestnet defaults to false
 - signTransactionBytes: (unsignedTransactionBytesHex: string, passphrase: string) => string
 - verifyTransactionBytes: (unsignedTransactionBytesHex: string, transactionType: string, transactionJSON: object, publicKey: string) => boolean
