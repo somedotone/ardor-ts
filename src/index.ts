@@ -11,3 +11,8 @@ export const Request: IRequest = new RequestHandler();
 export const Time: ITime = new TimeConverter();
 export const Account: IAccount = new AccountHandler();
 export const Passphrase: IPassphrase = new PassphraseGenerator();
+
+export class RequestClass extends RequestHandler {};
+export class TimeClass extends TimeConverter {};
+export class AccountClass extends AccountHandler {};
+export class PassphraseClass extends PassphraseGenerator {};

@@ -167,4 +167,23 @@ It provides the following APIs:
 - convertArdorToUnixTimestamp: (timestamp: number, isTestnetTimestamp?: boolean) => number // isTestnetTimestamp defaults to false
 ````
 
+
+### Module Instantiation
+
+Each module is pre instantiated and ready to use. If you need the class definition of an module, you can import it via `<module>Class`. For example:
+
+````typescript
+import { Passphrase, PassphraseClass } from 'ardor-ts'
+
+
+/* use the default instantiation */
+const passphrase1 = Passphrase.generate();
+console.log(passphrase1);
+
+/* use your own instantiation */
+const myPassphrase = new PassphraseClass();
+const passphrase2 = myPassphrase.generate();
+console.log(passphrase2);
+````
+
 Enjoy :)

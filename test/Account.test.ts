@@ -1,4 +1,4 @@
-import { Account, Request, Time } from "../src/index";
+import { Account, AccountClass, Request, Time } from "../src/index";
 import config from './config';
 
 
@@ -10,6 +10,17 @@ if(config.test.accountModule.runTests) {
             expect(pubKey).toBe(config.account.alice.pubKey.hex);
             
             const pubKeyBytes = Account.convertPassphraseToPublicKey(config.account.alice.secret, true);
+            expect(String(pubKeyBytes)).toBe(String(config.account.alice.pubKey.bytes));
+        });
+
+
+         test('convertPassphraseToPublicKey with own instance', () => {
+            const ownAccount = new AccountClass();
+
+            const pubKey = ownAccount.convertPassphraseToPublicKey(config.account.alice.secret);
+            expect(pubKey).toBe(config.account.alice.pubKey.hex);
+            
+            const pubKeyBytes = ownAccount.convertPassphraseToPublicKey(config.account.alice.secret, true);
             expect(String(pubKeyBytes)).toBe(String(config.account.alice.pubKey.bytes));
         });
 

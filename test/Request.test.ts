@@ -1,6 +1,7 @@
 import { 
     ChainId, 
     Request,
+    RequestClass,
     ErrorResponse,
     GetBlockchainTransactionsParams,
     ChildTransactionType,
@@ -20,6 +21,17 @@ if(runGetRequests) {
     describe('Information request tests', () => {
     
         test('getBalance success', async () => {
+            const response = await Request.getBalance(config.node.url.testnet, {chain: ChainId.IGNIS, account: config.account.alice.address});
+            
+            expect(response.balanceNQT).toBeDefined();
+            expect(response.unconfirmedBalanceNQT).toBeDefined();
+            expect(response.requestProcessingTime).toBeDefined();
+        });
+
+
+        test('getBalance success with own instance', async () => {
+            const ownRequest = new RequestClass();
+
             const response = await Request.getBalance(config.node.url.testnet, {chain: ChainId.IGNIS, account: config.account.alice.address});
             
             expect(response.balanceNQT).toBeDefined();

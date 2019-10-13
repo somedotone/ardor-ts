@@ -1,5 +1,5 @@
 import config from './config'
-import { Passphrase } from "../src/index"
+import { Passphrase, PassphraseClass } from "../src/index"
 
 
 if(config.test.passphraseModule) {
@@ -7,6 +7,15 @@ if(config.test.passphraseModule) {
 
         test('generate', () => {
             const passphrase = Passphrase.generate();
+            expect(passphrase).toBeDefined();
+            expect(passphrase.split(" ").length).toBe(12);
+        });
+
+
+        test('generate with own instance', () => {
+            const ownPassphrase = new PassphraseClass();
+
+            const passphrase = ownPassphrase.generate();
             expect(passphrase).toBeDefined();
             expect(passphrase.split(" ").length).toBe(12);
         });

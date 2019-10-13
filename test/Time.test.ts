@@ -1,5 +1,5 @@
 import config from './config'
-import { Time } from "../src/index"
+import { Time, TimeClass } from "../src/index"
 
 
 if(config.test.timeModule) {
@@ -7,6 +7,13 @@ if(config.test.timeModule) {
         
         test('convertArdorToUnixTimestamp testnet', () => {
             const unixTimestamp = Time.convertArdorToUnixTimestamp(config.timestamp.ardor.testnet, true);
+            expect(unixTimestamp).toBe(config.timestamp.unix.testnet);
+        });
+
+
+        test('convertArdorToUnixTimestamp testnet with own instance', () => {
+            const ownTime = new TimeClass();
+            const unixTimestamp = ownTime.convertArdorToUnixTimestamp(config.timestamp.ardor.testnet, true);
             expect(unixTimestamp).toBe(config.timestamp.unix.testnet);
         });
 
