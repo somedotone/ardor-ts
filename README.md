@@ -168,7 +168,7 @@ It provides the following APIs:
 ````
 
 
-### Module Instantiation
+## Module Instantiation
 
 Each module is pre instantiated and ready to use. If you need the class definition of an module, you can import it via `<module>Class`. For example:
 
