@@ -62,7 +62,7 @@ An example request to get the current account balance might look like this:
 
 
 ````typescript
-import { Request, GetBalanceParams, ChainId, ErrorResponse } from 'ardor-ts'
+import { request, GetBalanceParams, ChainId, ErrorResponse } from 'ardor-ts'
 
 
 const exampleRequest = async () => {
@@ -76,7 +76,7 @@ const exampleRequest = async () => {
     try {
 
         /* create and emit a request */
-        const response = await Request.getBalance("https://testardor.jelurida.com", params);
+        const response = await request.getBalance("https://testardor.jelurida.com", params);
 
         /* the response implements the GetBalanceResponse interface */
         console.log(response.balanceNQT);
@@ -170,18 +170,18 @@ It provides the following APIs:
 
 ## Module Instantiation
 
-Each module is pre instantiated and ready to use. If you need the class definition of an module, you can import it via `<module>Class`. For example:
+Each module is pre instantiated and importable via the lower case module name. If you need the class definition of a module, import it via the upper case name. For example:
 
 ````typescript
-import { Passphrase, PassphraseClass } from 'ardor-ts'
+import { passphrase, Passphrase } from 'ardor-ts'
 
 
 /* use the default instantiation */
-const passphrase1 = Passphrase.generate();
+const passphrase1 = passphrase.generate();
 console.log(passphrase1);
 
 /* use your own instantiation */
-const myPassphrase = new PassphraseClass();
+const myPassphrase = new Passphrase();
 const passphrase2 = myPassphrase.generate();
 console.log(passphrase2);
 ````

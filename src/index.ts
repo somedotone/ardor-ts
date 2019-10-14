@@ -7,12 +7,12 @@ import PassphraseGenerator from "./modules/PassphraseGenerator";
 export * from "./types";
 
 
-export const Request: IRequest = new RequestHandler();
-export const Time: ITime = new TimeConverter();
-export const Account: IAccount = new AccountHandler();
-export const Passphrase: IPassphrase = new PassphraseGenerator();
+export const request: IRequest = new RequestHandler();
+export const time: ITime = new TimeConverter();
+export const account: IAccount = new AccountHandler();
+export const passphrase: IPassphrase = new PassphraseGenerator();
 
-export class RequestClass extends RequestHandler {};
-export class TimeClass extends TimeConverter {};
-export class AccountClass extends AccountHandler {};
-export class PassphraseClass extends PassphraseGenerator {};
+export class Request extends RequestHandler {};
+export class Time extends TimeConverter {};
+export class Account extends AccountHandler {};
+export class Passphrase extends PassphraseGenerator {};

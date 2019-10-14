@@ -24,7 +24,7 @@ import {
     GetAccountPropertiesParams,
     GetAccountPropertiesResponse
 } from '../types';
-import { Account } from '../index';
+import { account } from '../index';
 
 
 export default class RequestHandler implements IRequest {
@@ -95,7 +95,7 @@ export default class RequestHandler implements IRequest {
         delete query.requestType;
         delete query.secretPhrase;
         query.broadcast = false;
-        query.publicKey = Account.convertPassphraseToPublicKey(params.secretPhrase);
+        query.publicKey = account.convertPassphraseToPublicKey(params.secretPhrase);
 
         url = this.checkUrlPrefix(url);
 
@@ -106,13 +106,12 @@ export default class RequestHandler implements IRequest {
         const unsignedTransactionBytesHex = response.data.unsignedTransactionBytes;
         const transactionJSON = response.data.transactionJSON;
 
-        if(!Account.verifyTransactionBytes(unsignedTransactionBytesHex, transactionJSON.type, transactionJSON, query.publicKey)) {
-            // return Promise.reject(new Error("transaction verification failed"));
+        if(!account.verifyTransactionBytes(unsignedTransactionBytesHex, transactionJSON.type, transactionJSON, query.publicKey)) {
             return this.convertErrorToAxiosResponse({errorCode: 1001, errorDescription: 'transaction verification failed'});
         }
 
 
-        const signedTransactionBytesHex = Account.signTransactionBytes(unsignedTransactionBytesHex, params.secretPhrase);
+        const signedTransactionBytesHex = account.signTransactionBytes(unsignedTransactionBytesHex, params.secretPhrase);
         return this.broadcast(url + "?requestType=broadcastTransaction", {transactionBytes: signedTransactionBytesHex, transactionJSON: transactionJSON});
     }
 

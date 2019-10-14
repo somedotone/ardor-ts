@@ -1,7 +1,7 @@
 import { 
     ChainId, 
+    request,
     Request,
-    RequestClass,
     ErrorResponse,
     GetBlockchainTransactionsParams,
     ChildTransactionType,
@@ -21,7 +21,7 @@ if(runGetRequests) {
     describe('Information request tests', () => {
     
         test('getBalance success', async () => {
-            const response = await Request.getBalance(config.node.url.testnet, {chain: ChainId.IGNIS, account: config.account.alice.address});
+            const response = await request.getBalance(config.node.url.testnet, {chain: ChainId.IGNIS, account: config.account.alice.address});
             
             expect(response.balanceNQT).toBeDefined();
             expect(response.unconfirmedBalanceNQT).toBeDefined();
@@ -30,9 +30,9 @@ if(runGetRequests) {
 
 
         test('getBalance success with own instance', async () => {
-            const ownRequest = new RequestClass();
+            const ownRequest = new Request();
 
-            const response = await Request.getBalance(config.node.url.testnet, {chain: ChainId.IGNIS, account: config.account.alice.address});
+            const response = await request.getBalance(config.node.url.testnet, {chain: ChainId.IGNIS, account: config.account.alice.address});
             
             expect(response.balanceNQT).toBeDefined();
             expect(response.unconfirmedBalanceNQT).toBeDefined();
@@ -42,7 +42,7 @@ if(runGetRequests) {
 
         test('getBalance response error', async () => {
             try {
-                await Request.getBalance(config.node.url.testnet, {chain: ChainId.IGNIS, account: config.account.alice.address + "bb"});
+                await request.getBalance(config.node.url.testnet, {chain: ChainId.IGNIS, account: config.account.alice.address + "bb"});
                 fail('should not reach here');
             } catch(e) {
                 const error = e as ErrorResponse;
@@ -54,7 +54,7 @@ if(runGetRequests) {
 
         test('getBalance request fail', async () => {
             try {
-                await Request.getBalance(config.node.url.testnet + "__", {chain: ChainId.IGNIS, account: config.account.alice.address});
+                await request.getBalance(config.node.url.testnet + "__", {chain: ChainId.IGNIS, account: config.account.alice.address});
                 fail('should not reach here');
             } catch(e) {
                 expect(e.code).toBe('ENOTFOUND');
@@ -64,7 +64,7 @@ if(runGetRequests) {
 
         test('decodeToken', async () => {
             const token = config.account.alice.token.testnet;
-            const response = await Request.decodeToken(config.node.url.testnet, {data: token.data, token: token.token});
+            const response = await request.decodeToken(config.node.url.testnet, {data: token.data, token: token.token});
             
             expect(response.valid).toBe(true);
             expect(response.accountRS).toBe(config.account.alice.address);
@@ -81,7 +81,7 @@ if(runGetRequests) {
                 type: ChildTransactionType.PAYMENT
             };
 
-            const response = await Request.getBlockchainTransactions(config.node.url.testnet, params);
+            const response = await request.getBlockchainTransactions(config.node.url.testnet, params);
             
             expect(response.requestProcessingTime).toBeDefined();
             expect(response.transactions[0]).toBeDefined();
@@ -89,7 +89,7 @@ if(runGetRequests) {
 
 
         test('getAccountProperties', async () => {
-            const response = await Request.getAccountProperties(config.node.url.testnet, { recipient: config.account.bob.address });
+            const response = await request.getAccountProperties(config.node.url.testnet, { recipient: config.account.bob.address });
             
             expect(response.requestProcessingTime).toBeDefined();
             expect(response.properties).toBeDefined();
@@ -111,7 +111,7 @@ if(runPostRequests) {
                     amountNQT: 1000,
                 }
 
-                const response = await Request.sendMoney(config.node.url.testnet, params);
+                const response = await request.sendMoney(config.node.url.testnet, params);
         
                 expect(response.fullHash).toBeDefined();
                 expect(response.requestProcessingTime).toBeDefined();
@@ -127,7 +127,7 @@ if(runPostRequests) {
                 }
 
                 try {
-                    await Request.sendMoney(config.node.url.testnet, params);
+                    await request.sendMoney(config.node.url.testnet, params);
                     fail('should not reach here');
                 } catch(e) {
                     const error = e as ErrorResponse;
@@ -146,7 +146,7 @@ if(runPostRequests) {
                 }
                 
                 try {
-                    await Request.sendMoney(config.node.url.testnet + "__", params);
+                    await request.sendMoney(config.node.url.testnet + "__", params);
                     fail('should not reach here');
                 } catch(e) {
                     expect(e.code).toBe('ENOTFOUND');
@@ -165,7 +165,7 @@ if(runPostRequests) {
                     value: 'tested on ' + (new Date()).toUTCString()
                 }
 
-                const response = await Request.setAccountProperty(config.node.url.testnet, params);
+                const response = await request.setAccountProperty(config.node.url.testnet, params);
         
                 expect(response.fullHash).toBeDefined();
                 expect(response.requestProcessingTime).toBeDefined();
@@ -176,7 +176,7 @@ if(runPostRequests) {
         if(postTransactionRequests.deleteAccountProperty) {
             test('deleteAccountProperty', async () => {
 
-                const getResponse = await Request.getAccountProperties(config.node.url.testnet, { recipient: config.account.bob.address });
+                const getResponse = await request.getAccountProperties(config.node.url.testnet, { recipient: config.account.bob.address });
                 
                 const propertiesSetByAlice = getResponse.properties.filter(property => property.setterRS === config.account.alice.address);
                 if(propertiesSetByAlice.length < 1) fail('bob has no module test property set');
@@ -190,7 +190,7 @@ if(runPostRequests) {
                     property: propertyName
                 };
                 
-                const deleteResponse = await Request.deleteAccountProperty(config.node.url.testnet, params);
+                const deleteResponse = await request.deleteAccountProperty(config.node.url.testnet, params);
             
                 expect(deleteResponse.fullHash).toBeDefined();
                 expect(deleteResponse.requestProcessingTime).toBeDefined();
