@@ -176,11 +176,11 @@ Each module is pre instantiated and importable via the lower case module name. I
 import { passphrase, Passphrase } from 'ardor-ts'
 
 
-/* use the default instantiation */
+/* use the default instance */
 const passphrase1 = passphrase.generate();
 console.log(passphrase1);
 
-/* use your own instantiation */
+/* use your own instance */
 const myPassphrase = new Passphrase();
 const passphrase2 = myPassphrase.generate();
 console.log(passphrase2);
