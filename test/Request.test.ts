@@ -177,10 +177,13 @@ if(runPostRequests) {
             test('deleteAccountProperty', async () => {
 
                 const getResponse = await request.getAccountProperties(config.node.url.testnet, { recipient: config.account.bob.address });
+                const propertiesSetByAlice = getResponse.properties.filter(property => property && property.setterRS ? property.setterRS === config.account.alice.address : false);
                 
-                const propertiesSetByAlice = getResponse.properties.filter(property => property.setterRS === config.account.alice.address);
+                let propertyName = "";
                 if(propertiesSetByAlice.length < 1) fail('bob has no module test property set');
-                const propertyName = propertiesSetByAlice[propertiesSetByAlice.length - 1].property;
+
+                const lastProperty = propertiesSetByAlice[propertiesSetByAlice.length - 1] || undefined;
+                if(lastProperty) propertyName = lastProperty.property;
 
 
                 let params: DeleteAccountPropertyParams = {
