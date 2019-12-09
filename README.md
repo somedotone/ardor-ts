@@ -15,16 +15,6 @@ For release version use
 npm install git+https://github.com/somedotone/ardor-ts#<release tag>
 ````
 
-There is a postinstall script which transpiles the typescript files into javascript so that the library can also be used in javascript projects.
-
-For **development and testing** clone the repo and run:
-
-````
-npm run install-dev
-````
-
-this installs the required dependencies without executing the postinstall script.
-
 
 ## Test
 
@@ -38,9 +28,14 @@ node:
 npm run test-node
 ````
 
-`npm test` runs the browser test.
+`npm test` runs both tests.
 
-Because broadcasting a transaction costs fees, the transaction post request tests are disabled in the default test configuration. You can change the configuration in the `test/config.ts` file.
+Because broadcasting a transaction costs fees, the transaction post request tests are disabled by default in the test configuration. You can change the configuration in `test/config.ts`.
+
+
+## Commit
+
+Run the `npm run precommit` command before committing to the repo. It triggers the test and build scripts.
 
 
 ## APIs
