@@ -2,4 +2,4 @@ src/
 test/
 .vscode/
 jest.config.js
-tsconfig.js
+tsconfig.json
