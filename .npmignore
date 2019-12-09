@@ -1,5 +1,6 @@
 src/
 test/
 .vscode/
+.github/
 jest.config.js
 tsconfig.json
