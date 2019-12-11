@@ -1,6 +1,6 @@
 # ardor-ts
 
-An [Ardor](https://ardorplatform.org) client library written in typescript.
+An [Ardor](https://ardorplatform.org) client library written in [TypeScript](https://www.typescriptlang.org).
 
 
 ## Install
