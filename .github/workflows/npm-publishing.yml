@@ -26,7 +26,7 @@ jobs:
       - name: Run tests for Node.js
         run: npm run test-build-node
 
-      - name: Run test for browser
+      - name: Run tests for browser
         run: npm run test-build-browser
 
 
