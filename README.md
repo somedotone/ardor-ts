@@ -5,15 +5,12 @@ An [Ardor](https://ardorplatform.org) client library written in [TypeScript](htt
 
 ## Install
 
-````
-npm install git+https://github.com/somedotone/ardor-ts
-````
-
-For release version use
 
 ````
-npm install git+https://github.com/somedotone/ardor-ts#<release tag>
+npm install @somedotone/ardor-ts@<release version>
 ````
+
+more information can be found at the [npm package](https://github.com/somedotone/ardor-ts/packages/81399) page.
 
 
 ## Test
@@ -31,11 +28,6 @@ npm run test-node
 `npm test` runs both tests.
 
 Because broadcasting a transaction costs fees, the transaction post request tests are disabled by default in the test configuration. You can change the configuration in `test/config.ts`.
-
-
-## Commit
-
-Run the `npm run precommit` command before committing to the repo. It triggers the test and build scripts.
 
 
 ## APIs
