@@ -2,7 +2,7 @@
   "name": "@somedotone/ardor-ts",
   "version": "1.0.0",
   "description": "An Ardor client library written in TypeScript",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "test": "npm run test-browser && npm run test-node",
     "test-node": "jest --testEnvironment=node",
