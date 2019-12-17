@@ -12,8 +12,8 @@ To use it as a dependency, create an *.npmrc* file in the same directory as your
 @somedotone:registry=https://npm.pkg.github.com/somedotone
 ```` 
 
-This tells npm to use the github registry for scoped somedotone packages.
-You can then install the npm package via
+This tells npm to use the GitHub registry for scoped somedotone packages.
+You can now install the npm package via
 
 ````
 npm install @somedotone/ardor-ts@<release version>
