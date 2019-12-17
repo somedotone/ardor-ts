@@ -7,17 +7,19 @@ An [Ardor](https://ardorplatform.org) client library written in [TypeScript](htt
 
 At the current state this library is published to the GitHub npm registry only.
 To use it as a dependency, create an *.npmrc* file in the same directory as your *package.json* and add the following line 
+
 ````
-registry=https://npm.pkg.github.com/somedotone
+@somedotone:registry=https://npm.pkg.github.com/somedotone
 ```` 
 
-You can now install the npm package via
+This tells npm to use the github registry for scoped somedotone packages.
+You can then install the npm package via
 
 ````
 npm install @somedotone/ardor-ts@<release version>
 ````
 
-More information can be found at the [npm package](https://github.com/somedotone/ardor-ts/packages/81399) and [GitHub](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-npm-for-use-with-github-packages#installing-a-package) documentation.
+More information can be found at the [npm package](https://github.com/somedotone/ardor-ts/packages/81399) description and [this medium post](https://medium.com/@crysfel/using-different-registries-in-yarn-and-npm-766541d6f851) about multiple registry usage.
 
 
 ## Test
