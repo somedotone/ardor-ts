@@ -58,7 +58,7 @@ An example request to get the current account balance might look like this:
 
 
 ````typescript
-import { request, GetBalanceParams, ChainId, ErrorResponse } from 'ardor-ts'
+import { request, GetBalanceParams, ChainId, ErrorResponse } from '@somedotone/ardor-ts'
 
 
 const exampleRequest = async () => {
@@ -169,7 +169,7 @@ It provides the following APIs:
 Each module is pre instantiated and importable via the lower case module name. If you need the class definition of a module, import it via the upper case name. For example:
 
 ````typescript
-import { passphrase, Passphrase } from 'ardor-ts'
+import { passphrase, Passphrase } from '@somedotone/ardor-ts'
 
 
 /* use the default instance */
