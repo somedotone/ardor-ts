@@ -1,3 +1,7 @@
+# Development moved to blobaa project.
+
+Development of [ardor-ts](https://github.com/blobaa/ardor-ts) has been moved to the [blobaa project](https://github.com/blobaa)
+
 # ardor-ts
 
 An [Ardor](https://ardorplatform.org) client library written in [TypeScript](https://www.typescriptlang.org).
