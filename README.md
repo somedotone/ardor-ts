@@ -1,6 +1,6 @@
 # Development moved to blobaa project.
 
-Development of [ardor-ts](https://github.com/blobaa/ardor-ts) has been moved to the [blobaa project](https://github.com/blobaa)
+Development has been moved to the [blobaa project](https://github.com/blobaa)
 
 # ardor-ts
 
